@@ -13,6 +13,7 @@ install:
   - docker push stevebargelt/dasher-rpi
 
 script: true
+
 notifications:
   slack:
     rooms:
