@@ -1,22 +1,18 @@
 language: python
 sudo: required
-
 services:
-  - docker
-
+- docker
 before_install:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker run --rm --privileged multiarch/qemu-user-static:register
-
+- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker run --rm --privileged multiarch/qemu-user-static:register
 install:
-  - docker build --rm --no-cache -t stevebargelt/dasher-rpi .
-  - docker push stevebargelt/dasher-rpi
-
+- docker build --rm --no-cache -t stevebargelt/dasher-rpi .
+- docker push stevebargelt/dasher-rpi
 script: true
-
 notifications:
   slack:
     rooms:
-      - secure: ""
+      - secure: CXUgeIRMBSmz1dKlTPOYE3EmE9cjHNuyJHlSJvGFMQK6GgYgSwIPVzOndOpaZ9ajsOG8W+y5+nWSIloYhIN8y3V4Cx57PatlL3xa70VHG/Oxxxg6OK4pAgv7Z39pjIn53G5044SzcQjavJ4LYQHXAebmgRYGEGSzENToyqZ7Rz1zwGMfa0Kdgo6NW+qt6EhfFA6HTF1cn/k87o/NwD+hSBRsuOzqssyfaeosgifzZOW84QXGfrR7nquWK59Tx248VSMKnbt31BTbYfqsmmHTVJks/RjEjiXBXHPqonTo+Bp2EdSC9jjDrNfXnsssE8oKRlY578pCjLZs0MwrLOs+j83ewAZv3tTVNq/mmPHrupnjq0S+WsiQYdOkb8g8Tqow7lXVoSLWTLHtsEw43MET7d+gpYPSCDkt0G2sKHPu3SI0Mm7r+pJ+PBQimHH5tE77whEKOY2flAEXIrrM/PxOmGAG6zhS7sAprThPqHEPSGA+vOLgGB4UUv+RH9ZeK6RcGOj7pdSpH0Ln0d8ZDbxkawtjBL+7pFSmGi3/NYqaSxIujFfrCxjMwgz907VEAtw2MqEUwMoynxVWfKq7oLIrf3PNjqMpnpUVttUT7i/rZ5AEe8yVtm8Wd+a1CiXONRLA7VhkT44CkbVInFRpEbB+kRyYUPKy8ipUdqVkqvQORR8=
     template:
-      - "Status=%{result}, Job=%{repository_name}, Build=%{build_number}, URL=%{build_url}, HUB=https://hub.docker.com/r/stevebargelt/dasher-rpi/"
+    - Status=%{result}, Job=%{repository_name}, Build=%{build_number}, URL=%{build_url},
+      HUB=https://hub.docker.com/r/stevebargelt/dasher-rpi/
